@@ -7,38 +7,52 @@
     /* position: absolute; */
     
 .navbar{
-    background-color: rgb(6, 6, 31) !important;
+    background-color: #06422e !important;
 }
 .nav-link:hover { 
     color: aqua !important;
 
 }
 #intro{
-    background-color: rgb(2, 2, 52);
-    
+    background-color: #a5f0d7;
+    height: 600px;
     background-repeat: repeat-x;
     background-size: cover;
     padding-bottom: 50px;
-    color: white;
+    /* color: #06422e ; */
 
+}
+.home-img{
+    width: 100%;
+    border-radius: 25px;
 }
 .clg{
     text-decoration: underline;
     color: black;
 }
+
 .text-align-justify span a{
 text-decoration: none;
 }
 .bg-colors{
-    margin-top: 100px;
+    /* margin-top: 100px; */
 
 }
 .con-size{
     width: 82%;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.row-margin{
+    margin-right: 0 !important;
+    align-items: center;
+    
 }
 .bg-colors img{
     width: 500px;
-    margin-left: 90px;
+    /* margin-left: 90px; */
 }
 .navbar-nav .nav-item .nav-link {
     color: #fff;
@@ -58,21 +72,23 @@ text-decoration: none;
     /* border: 5px solid rgb(2, 2, 81); */
     /* margin-top: 30px; */
 }
-.text-align-justify{
+ .text-align-justify{
     text-align: center;
 }
- .navbar-nav {
+ /*.navbar-nav { 
     /* position: fixed; */
     /* right: 0; */
     /* margin-right: 30px; */
 
-}
+
 .study-style{
     font-style: italic;
     font-weight: 500;
 }
 .education-border{
-    border: 4px solid rgb(174, 204, 230);
+    border: 4px solid #06422e;
+
+    margin-top: 6rem !important;
 
     /* background-color:aliceblue; */
 }
@@ -83,4 +99,150 @@ text-decoration: none;
     width: 15px;
     /* border: 2px solid darkblue; */
 }
+.icon-size{
+    /* width: 20px; */
+    /* background-color:  !important; */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+.contact{
+    background: url('/portfolio/imagess/High_resolution_wallpaper_background_ID_77700343819.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+::placeholder{
 
+    font-style: italic;
+    /* color: rgb(164, 162, 162); */
+}
+.sub-button{
+    width: 200px;
+    height: 40px;
+}
+#Education p a:hover{
+    color: rgb(27, 27, 193);
+}
+.about-width{
+    width: 75%;
+    margin-top: 6rem !important;
+}
+
+.about-img-border{
+    border-radius: 25px;
+    width: 100%;
+    box-shadow: 5px 5px 5px 5px;
+    color: #06422e ;
+    
+}
+#skill img{
+    width: 125px;
+    height: 125px;
+    
+  }
+  /* .hovers{
+    position: absolute;
+  } */
+  
+
+  .text-align-center{
+    text-align: center;
+
+  }
+
+  .edu-margin-top{
+    margin-top: 7rem !important;
+  }
+  .skill-spacing{
+    padding-top: 6rem !important;
+  }
+  #skill
+  {
+    background-color: #a5f0d7;
+    background-repeat: repeat-x;
+    background-size: cover;
+    padding-bottom: 50px;
+    /* color: white; */
+  }
+
+  .skill-img:hover {
+    box-shadow: 10px 10px;
+    color: #06422e;
+    background-color:white;
+    padding: 20px 20px ;
+
+  }
+ 
+
+ 
+
+ @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) 
+ {
+  
+    .about{
+        width: 80%;
+    }
+
+    
+  }
+  @media (min-width:550px) and (max-width:767px){
+    .column-md{
+        width: 50%;
+
+    }
+  }
+  
+  /* 
+    ##Device = Low Resolution Tablets, Mobiles (Landscape)
+    ##Screen = B/w 481px to 767px
+  */
+  
+  @media (min-width: 351px) and (max-width: 767px) {
+    
+    /* CSS */
+  
+    .about{
+        width: 80%;
+        /* border: none; */
+    }
+    .order1{
+        order: 1;
+    }
+    .order2{
+        order: 2;
+    }
+    .fname-margin{
+        margin-bottom: 20px;
+    }
+    
+  }
+  
+  /* 
+    ##Device = Most of the Smartphones Mobiles (Portrait)
+    ##Screen = B/w 320px to 479px
+  */
+  
+  @media (max-width: 350px) 
+    {
+    /* CSS */
+    .about{
+        width: 80%;
+        border: none;
+        
+    }
+    .order1{
+        order: 1;
+        margin-bottom: 50px;
+    }
+    .order2{
+        order: 2;
+        
+    }
+    .fname-margin{
+        margin-bottom: 20px;
+    }
+    
+        
+    
+  }
+ 

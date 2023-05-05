@@ -370,26 +370,47 @@
     // Validate name field
     const nameValue = nameInput.value.trim();
     const nameRegex = /^[a-zA-Z ]+$/;
-    
+
+    if (nameValue.length === 0) {
+  alert('Please enter your name');
+  event.preventDefault();
+  return;
+}
     if (!nameValue.match(nameRegex)) {
-      alert('Please enter only alphabets in the name field.');
+      alert('Please enter only alphabets in the name field');
       event.preventDefault();
       return;
     }
 
+   
+
   // Validate email field
   const emailValue = emailInput.value.trim();
   const emailRegex = /^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,3}$/; //syntax for mail
+
+  if (emailValue.length === 0) {
+  alert('Please enter your Email');
+  event.preventDefault();
+  return;
+}
+
   if (!emailValue.match(emailRegex)) {
-    alert('Please enter a valid email address.');
+    alert('Please enter a valid email address');
     event.preventDefault();
     return;
   }
 
   // Validate subject field
   const subjectValue = subjectInput.value.trim();
+
+  if (subjectValue.length === 0) {
+  alert('Please Enter the Subject');
+  event.preventDefault();
+  return;
+}
+
   if (!subjectValue.match(nameRegex)) {
-    alert('Please enter only alphabets in the subject field.');
+    alert('Please enter only alphabets in the subject field');
     event.preventDefault();
     return;
   }
@@ -397,7 +418,7 @@
   const messageValue = messageInput.value.trim();
   const messageRegex = /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/? ]+$/;
   if (messageValue.length === 0) {
-    alert('Please enter a message.');
+    alert('Please enter a message');
     event.preventDefault();
     return;
   }

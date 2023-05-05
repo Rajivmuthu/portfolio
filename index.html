@@ -57,7 +57,7 @@
     </div>
      <h1>FullStack Developer</h1>
      <p class="p-size">"Let's work together to bring your ideas to life and make your digital dreams a reality."</p>
-     <a href="./imagess/document/Rajiv_Resume.pdf"><button class="button-style">
+     <a href="./imagess/document/Rajiv_Resume.pdf" download="Rajiv_Resume"><button id="download-btn" onclick="download()" class="button-style">
       <div class="cv-color">Download CV</div></button></a>    
     </div>
     <div class="col-lg-6 col-sm-12 col-md-6 bg-colors ">
@@ -143,7 +143,8 @@
 
 <section id="skill">
 <div class="container">
-  <h1 class="d-flex justify-content-center skill-spacing pb-4">Skills</h1>
+  <h1 class="d-flex justify-content-center skill-spacing ">Skills</h1>
+  <p class="p-size text-align-center pb-5">"Like a well-tended garden, consistent effort can help our skills flourish."</p>
   <div class="container d-flex justify-content-plant col-lg-12 ">
     <div>
     <img src="./imagess/beginner1.svg">
@@ -254,8 +255,11 @@
         <a href="https://www.linkedin.com/in/rajiv-m-3b4158197/"><img src="./imagess/linkedin-in.svg" class="icon-size mx-2"></a>
         <a href="https://twitter.com/RajivM5101"><img src="./imagess/twitter.svg" class="icon-size mx-2"></a>
       </div>
-      
+
+
+      <form id="my-form">
     <div class="row mb-4">
+      
       <div class="col-lg-6 col-md-6 col-sm-12 ">
         <input type="text" class="form-control fname-margin"  id="name" placeholder="First name *" >
       </div>
@@ -269,56 +273,11 @@
 
     <div class="mx-auto d-flex justify-content-center mb-4 ">
      
-    <button onclick="myFunction()" class="btn btn-primary sub-button">SUBMIT</button>
+    <button onclick="myFunction()"  class="btn btn-primary sub-button">SUBMIT</button>
   </div>
     </div>
-  
-   <!-- <form class="row g-3 needs-validation" novalidate>
-    <div class="col-6">
-      <label for="validationCustom03" class="form-label">City</label>
-      <input type="text" class="form-control" placeholder="Enter your name" id="validationCustom03" required>
-      <div class="invalid-feedback">
-        Enter valid name
-      </div>
-      <div class="valid-feedback">
-        Looks good!
-      </div>
-    </div>
-    <div class="col-6">
-      <label for="validationCustom03" class="form-label">City</label>
-      <input type="text" class="form-control" placeholder="Enter Email" id="validationCustom03" required>
-      <div class="invalid-feedback">
-        Provide valid email id
-      </div>
-      <div class="valid-feedback">
-        Looks good!
-      </div>
-    </div>
-    <div class="col-12">
-      <label for="validationCustom03" class="form-label">City</label>
-      <input type="text" class="form-control" placeholder="Subject" id="validationCustom03" required>
-      <div class="invalid-feedback">
-        Enter subject
-      </div>
-      <div class="valid-feedback">
-        Looks good!
-      </div>
-    </div>
-    <div class="col-12">
-      <label for="validationCustom03" class="form-label">Message</label>
-      <textarea type="text" class="form-control" placeholder="Leave your meassage" id="validationCustom03" required></textarea>
-      <div class="invalid-feedback">
-        Leave your comments
-      </div>
-      <div class="valid-feedback">
-        Looks good!
-      </div>
-    </div>
-    
-    <div class="col-12 ">
-      <button class="btn btn-primary mx-auto" type="submit">Submit form</button>
-    </div>
-  </form>  -->
+  </form>
+
 </section>
 <section id="footer">
   <div class="container">
@@ -358,7 +317,7 @@
 
 
 
-
+                <!-- ..........................................SCRIPT ........................................-->
 
 
 
@@ -366,57 +325,125 @@
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+  
   <script>
-    function myFunction() {
-      if(document.getElementById("name").value=="")
-      {
-      alert("Enter Firstname");
-      }
-      else if(document.getElementById("email").value=="" )
-      {
-        alert("Enter Emailid");
-      }
-      else if(!((document.getElementById("email").value.includes("@","."))))
-      {
-        alert("Enter valid Emailid");
-      }
-      else if(document.getElementById("subject").value=="")
-      {
-        alert("Enter Subject");
-      }
-      else if(document.getElementById("textarea").value=="")
-      {
-        alert("Leave some message" );
-      }
-      else{
-        return addData()
+    //script for validating form(method-1)...........................................form-validation-1s
+
+//     function myFunction() {
+//       if(document.getElementById("name").value=="")
+//       {
+//       alert("Enter Firstname");
+//       }
+//       else if(document.getElementById("email").value=="" )
+//       {
+//         alert("Enter Emailid");
+//       }
+//       else if(!((document.getElementById("email").value.includes("@","."))))
+//       {
+//         alert("Enter valid Emailid");
+//       }
+//       else if(document.getElementById("subject").value=="")
+//       {
+//         alert("Enter Subject");
+//       }
+//       else if(document.getElementById("textarea").value=="")
+//       {
+//         alert("Leave some message" );
+//       }
+//       else{
+//         return addData()
         
-      }
-}
+//       }
+// }
+    
+
+ //script for validating form(method-2).....................................form validation-2
+
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+  const subjectInput = document.getElementById('subject');
+  const messageInput = document.getElementById('textarea');
+  const form = document.getElementById('my-form');
+
+  form.addEventListener('submit', (event) => {
+
+    // Validate name field
+    const nameValue = nameInput.value.trim();
+    const nameRegex = /^[a-zA-Z ]+$/;
+    
+    if (!nameValue.match(nameRegex)) {
+      alert('Please enter only alphabets in the name field.');
+      event.preventDefault();
+      return;
+    }
+
+  // Validate email field
+  const emailValue = emailInput.value.trim();
+  const emailRegex = /^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,3}$/; //syntax for mail
+  if (!emailValue.match(emailRegex)) {
+    alert('Please enter a valid email address.');
+    event.preventDefault();
+    return;
+  }
+
+  // Validate subject field
+  const subjectValue = subjectInput.value.trim();
+  if (!subjectValue.match(nameRegex)) {
+    alert('Please enter only alphabets in the subject field.');
+    event.preventDefault();
+    return;
+  }
+  //validate message field
+  const messageValue = messageInput.value.trim();
+  const messageRegex = /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/? ]+$/;
+  if (messageValue.length === 0) {
+    alert('Please enter a message.');
+    event.preventDefault();
+    return;
+  }
+
+  // If all fields are valid, submit the form
+});
+
+//Script for show confirm popup when click download cv.......................................Download cv
+
+const downloadBtn = document.getElementById('download-btn');
+
+downloadBtn.addEventListener('click', (event) => {
+  if (confirm('Are you want to download this Resume file?','Yes,No')) {
+    event.target.parentElement.click();
+  }
+  else {
+    event.preventDefault();
+  }
+});
+
+//script for validating form(method-3)........................................................validate-form-3
 // Example starter JavaScript for disabling form submissions if there are invalid fields
-(() => {
-  'use strict'
+// (() => {
+//   'use strict'
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  const forms = document.querySelectorAll('.needs-validation')
+//   // Fetch all the forms we want to apply custom Bootstrap validation styles to
+//   const forms = document.querySelectorAll('.needs-validation')
 
-  // Loop over them and prevent submission
-  Array.from(forms).forEach(form => {
-    form.addEventListener('submit', event => {
-      if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-      }
+//   // Loop over them and prevent submission
+//   Array.from(forms).forEach(form => {
+//     form.addEventListener('submit', event => {
+//       if (!form.checkValidity()) {
+//         event.preventDefault()
+//         event.stopPropagation()
+//       }
 
-      form.classList.add('was-validated')
-    }, false)
-  })
-})()
+//       form.classList.add('was-validated')
+//     }, false)
+//   })
+// })()
 
-
+//aos.init()-this is the script to link the aos animation with html.......................AOS animation
   AOS.init();
 
-  //for insert form details to table
+  //for insert form details to table(method1)............................................form-table-1
+
   // var list1=[]
   // var list2=[]
   // var list3=[]
@@ -448,6 +475,8 @@
   //   x++;
 
   // }
+
+  //for insert form details to table(method-2)....................form-table-2
   // function addData() {
   // // Get form data
   // var name = document.getElementById("name").value;
@@ -476,35 +505,37 @@
   // document.getElementById("mes").value = "";
 // }
 
-function addData() {
-  // Get form data
-  var name = document.getElementById("name").value;
-  var email = document.getElementById("email").value;
-  var sub = document.getElementById("subject").value;
-  var mes = document.getElementById("textarea").value;
+//  //for insert form details to table(method-3).......................form-table-3
 
-  // console.log(mes);
+// function addData() {
+//   // Get form data
+//   var name = document.getElementById("name").value;
+//   var email = document.getElementById("email").value;
+//   var sub = document.getElementById("subject").value;
+//   var mes = document.getElementById("textarea").value;
 
-  // Create new row in table
-  var table = document.getElementById("Mytable");
-  var row = table.insertRow(-1);
+//   // console.log(mes);
 
-  // Add data to new row
-  var nameCell = row.insertCell(0);
-  var emailCell = row.insertCell(1);
-  var subCell = row.insertCell(2);
-  var mesCell = row.insertCell(3);
-  nameCell.innerHTML = name;
-  emailCell.innerHTML = email;
-  subCell.innerHTML = sub;
-  mesCell.innerHTML = mes;
+//   // Create new row in table
+//   var table = document.getElementById("Mytable");
+//   var row = table.insertRow(-1);
 
-  // Clear form fields
-  document.getElementById("name").value = "";
-  document.getElementById("email").value = "";
-  document.getElementById("subject").value = "";
-  document.getElementById("textarea").value = "";
-}
+//   // Add data to new row
+//   var nameCell = row.insertCell(0);
+//   var emailCell = row.insertCell(1);
+//   var subCell = row.insertCell(2);
+//   var mesCell = row.insertCell(3);
+//   nameCell.innerHTML = name;
+//   emailCell.innerHTML = email;
+//   subCell.innerHTML = sub;
+//   mesCell.innerHTML = mes;
+
+//   // Clear form fields
+//   document.getElementById("name").value = "";
+//   document.getElementById("email").value = "";
+//   document.getElementById("subject").value = "";
+//   document.getElementById("textarea").value = "";
+// }
   </script>
 </body>
 </html>

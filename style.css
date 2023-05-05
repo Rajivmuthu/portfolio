@@ -19,14 +19,14 @@
     height: 45px;
     border-radius: 30px;
     background-color: green;
-    color: #06422e;
+    /* color: #06422e; */
 }
 .cv-color{
     color: white;
 }
 .button-style:hover{
     padding: 10px 10px;
-    box-shadow: 5px 5px;
+    box-shadow:#06422e 0px 0px 5px 5px;
 }
 
 .edu-spacing{
@@ -61,10 +61,7 @@
 .text-align-justify span a{
 text-decoration: none;
 }
-.bg-colors{
-    /* margin-top: 100px; */
 
-}
 .con-size{
     width: 82%;
     height: 600px;
@@ -127,8 +124,7 @@ text-decoration: none;
     width: 15px;
     /* border: 2px solid darkblue; */
 }
-.icon-size{
-    background-color: cyan;    
+.icon-size{    
     border-radius: 50%;
     width: 57px;
     height: 33px;
@@ -297,11 +293,15 @@ text-decoration: none;
   height: 140px;
 }
 
+.icon-size:hover{
+  background-color:#a5f0d7 ;
+}
 
 
 
 
 
+                     /* ..................................MEDIA QUERY.......................................*/
 
 
  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) 

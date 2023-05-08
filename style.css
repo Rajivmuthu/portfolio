@@ -110,9 +110,9 @@ text-decoration: none;
     font-weight: 500;
 }
 .education-border{
-    border: 4px solid #06422e;
+    /* border: 4px solid #06422e; */
 
-    margin-top: 6rem !important;
+    margin-top: 4rem !important;
 
     /* background-color:aliceblue; */
 }
@@ -199,10 +199,11 @@ text-decoration: none;
   }
   
   #footer{
-    background-color: #06422e; ;
+    background-color: #06422e; 
   }
   .column-md {
     position: relative;
+    border: 3px solid #09a974;
     
   }
 
@@ -269,13 +270,13 @@ text-decoration: none;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 2px solid #000;
+    /* border: 2px solid #000; */
     
  }
  /* #skill .col-lg-3{
     width: 26%;
  } */
- #skill .row{
+ #skill .skill-list{
     justify-content: space-between;
     row-gap: 35px;
     column-gap:1px
@@ -287,7 +288,10 @@ text-decoration: none;
     height: 80%;
 }
 .justify-content-plant{
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
+  display: flex;
+  flex-direction: column;
+  
 }
 .justify-content-plant img{
   height: 140px;

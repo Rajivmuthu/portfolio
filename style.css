@@ -199,11 +199,11 @@ text-decoration: none;
   }
   
   #footer{
-    background-color: #06422e; 
+    background-color: #06422e;
   }
   .column-md {
     position: relative;
-    border: 3px solid #09a974;
+    border: 3px solid #000;
     
   }
 

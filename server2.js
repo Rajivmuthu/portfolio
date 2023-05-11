@@ -12,12 +12,13 @@ var connection = mysql.createConnection({
   host     : 'localhost',//host
   user     : 'root', //our db user name
   password : 'Password@123',//db password
-  database : 'portfolio'//db name
+  database : 'portfolio1'//db name
 });
+
 // ...............................insert data in database..........................
-app.post('/insertall',((req,res)=>
+app.post('/insertall1',((req,res)=>
 {
-    connection.query(`insert into client_details(Cname,email,subjects,message) values('${req.body.Cname}','${req.body.email}','${req.body.subjects}','${req.body.message}')`,function(error,results){
+    connection.query(`insert into user_details(fname,email,subjects,message) values('${req.body.fname}','${req.body.email}','${req.body.subjects}','${req.body.message}')`,function(error,results){
     if (error){
         console.log(error);
     }
@@ -26,10 +27,11 @@ app.post('/insertall',((req,res)=>
 })
 }
 ))
+
 // ......................................getall the data in table.............
-app.get('/getall',((req,res)=>{
+app.get('/getall1',((req,res)=>{
     
-    connection.query(`SELECT * from client_details where is_active = 1`, function (error, results) {
+    connection.query(`SELECT * from user_details where is_active = 1`, function (error, results) {
         if (error){
             console.log(error);
         }
@@ -39,10 +41,11 @@ app.get('/getall',((req,res)=>{
         res.json(results)
       });
     }));
+
 // ...............................................update data in database.............
-    app.put('/update',((req,res)=>
+app.put('/update1',((req,res)=>
 {
-    connection.query(`update client_details set Cname='${req.body.Cname}',email='${req.body.email}',subjects='${req.body.subjects}',message='${req.body.message}' where id='${req.body.id}'`,function(error,results){
+    connection.query(`update user_details set fname='${req.body.fname}',email='${req.body.email}',subjects='${req.body.subjects}',message='${req.body.message}' where id='${req.body.id}'`,function(error,results){
     if (error){
         console.log(error);
     }
@@ -52,22 +55,19 @@ app.get('/getall',((req,res)=>{
 }
 ))
 
-
 // ....................................delete the row using isactive.......................................
-    app.put('/delete',((req,res)=>
-    {
-        connection.query(`update client_details set is_active=${req.body.is_active} where id=${req.body.id}`,function (error,results){
-        if (error){
-            console.log(error);
-        }
-        console.log('The solution is: ',results);
-        res.json(results)
-    })
+app.put('/delete1',((req,res)=>
+{
+    connection.query(`update user_details set is_active = ${req.body.is_active} where id=${req.body.id}`,function (error,results){
+    if (error){
+        console.log(error);
     }
-    ))
+    console.log('The solution is: ',results);
+    res.json(results)
+})
+}
+))
 
 app.listen(5000,()=>{
     console.log("Listening on port 5000");
 })
-
-

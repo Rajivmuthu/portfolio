@@ -301,6 +301,18 @@ text-decoration: none;
   background-color:#a5f0d7 ;
 }
 
+#Mytable th,td{
+  border-collapse: collapse;
+border: 2px solid #000;
+padding: 10px 10px ;
+
+}
+#Mytable{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 
 
 

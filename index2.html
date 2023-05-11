@@ -258,7 +258,8 @@
 
     <div class="mx-auto d-flex justify-content-center mb-4 ">
      
-    <button onclick="createuser()" class="btn btn-primary sub-button">submit</button>
+    <button onclick="validate_form()" id="subtn" class="btn btn-primary sub-button">submit</button>
+    <button onclick="update_form()" id="update_btn" class="btn btn-primary sub-button" style="display: none;">Update</button>
   </div>
     </div>
   </form>
@@ -278,6 +279,7 @@
 </div>
 </section>
 <table id="Mytable">
+    <h3 class="text-align-center mt-3">User_information</h3>
   <thead>
     <tr>
       <th scope="col">First Name</th>
@@ -288,7 +290,9 @@
   </thead>
   <tbody id="table-body"></tbody>
 
-
+  <div id="popup" style="display:none;">
+    Thanks for your response!
+  </div>
 
 
 
@@ -382,73 +386,69 @@
     
 
  //script for validating form(method-2).....................................form validation-2
+  var nameInput = document.getElementById('name');
+        var emailInput = document.getElementById('email');
+        var subjectInput = document.getElementById('subject');
+        var messageInput = document.getElementById('textarea');
+        var form = document.getElementById('my-form');
 
-  const nameInput = document.getElementById('name');
-  const emailInput = document.getElementById('email');
-  const subjectInput = document.getElementById('subject');
-  const messageInput = document.getElementById('textarea');
-  const form = document.getElementById('my-form');
-
-  form.addEventListener('submit', (event) => {
-    // Validate name field
-    const nameValue = nameInput.value.trim();
-    const nameRegex = /^[a-zA-Z ]+$/;
-
-    if (nameValue.length === 0) {
-  alert('Please enter your name');
-  event.preventDefault();
-  return;
-}
-    if (!nameValue.match(nameRegex)) {
-      alert('Please enter only alphabets in the name field');
-      event.preventDefault();
-      return;
-    }
-
-   
+function validate_form() {
+  // Validate name field
+  const nameValue = nameInput.value.trim();
+  const nameRegex = /^[a-zA-Z ]+$/;
 
   // Validate email field
   const emailValue = emailInput.value.trim();
   const emailRegex = /^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,3}$/; //syntax for mail
 
-  if (emailValue.length === 0) {
-  alert('Please enter your Email');
-  event.preventDefault();
-  return;
-}
+  // Validate subject field
+  const subjectValue = subjectInput.value.trim();
 
-  if (!emailValue.match(emailRegex)) {
+  //validate message field
+  const messageValue = messageInput.value.trim();
+  const messageRegex = /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/? ]+$/;
+
+  if (nameValue.length === 0) {
+    alert('Please enter your name');
+    event.preventDefault();
+    return;
+  } else if (!nameValue.match(nameRegex)) {
+    alert('Please enter only alphabets in the name field');
+    event.preventDefault();
+    return;
+  }
+
+  else if (emailValue.length === 0) {
+    alert('Please enter your Email');
+    event.preventDefault();
+    return;
+  } else if (!emailValue.match(emailRegex)) {
     alert('Please enter a valid email address');
     event.preventDefault();
     return;
   }
 
-  // Validate subject field
-  const subjectValue = subjectInput.value.trim();
-
-  if (subjectValue.length === 0) {
-  alert('Please Enter the Subject');
-  event.preventDefault();
-  return;
-}
-
-  if (!subjectValue.match(nameRegex)) {
+  else if (subjectValue.length === 0) {
+    alert('Please Enter the Subject');
+    event.preventDefault();
+    return;
+  } else if (!subjectValue.match(nameRegex)) {
     alert('Please enter only alphabets in the subject field');
     event.preventDefault();
     return;
   }
-  //validate message field
-  const messageValue = messageInput.value.trim();
-  const messageRegex = /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/? ]+$/;
-  if (messageValue.length === 0) {
+
+  else if (messageValue.length === 0) {
     alert('Please enter a message');
     event.preventDefault();
     return;
   }
 
-  // If all fields are valid, submit the form
-});
-
+  // If all fields are valid, store function will execute
+  add();
+   }
+   </script>
+   <script>
 //Script for show confirm popup when click download cv.......................................Download cv
 
 const downloadBtn = document.getElementById('download-btn');
@@ -632,6 +632,183 @@ downloadBtn.addEventListener('click', (event) => {
 //     console.error('Error inserting form data');
 //   }
 // });
+        
+function add(){
+          
+          console.log('clicked', document.getElementById("name").value);
+                fetch('http://localhost:5000/insertall1', {
+             method: 'POST',
+             body: JSON.stringify({
+                fname: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                subjects: document.getElementById("subject").value,
+                message: document.getElementById("textarea").value,
+          }),
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        })
+          .then((response) => response.json())
+          .then((json) => console.log(json));
+          location.reload();  
+      }
+
+    //   function getall(){
+        fetch('http://localhost:5000/getall1')
+        .then(res => res.json())
+        .then(users => {
+            console.log(users)
+            html=""
+        users.forEach(element => {
+            html+=`<tr>
+                <td>${element.id}</td>
+                <td> ${element.fname}</td>
+                <td>${element.email}</td>
+                <td>${element.subjects}</td>
+                <td>${element.message}</td>
+                <td>
+                  <button onclick="edit(${element.id},'${element.fname}','${element.email}','${element.subjects}','${element.message}')">Edit</button>
+                   <button onclick="deleteuser(${element.id},${element.is_active})" )">Delete</button>
+                  </td>              
+                </<tr>`
+        });
+        console.log(html)
+        // document.getElementsByTagName("tbody")[0].innerHTML=html
+        document.getElementById("Mytable").innerHTML=html
+    
+    })
+// }
+   
+    var submitBtn = document.getElementById('subtn');
+        var updateBtn = document.getElementById('update_btn');
+            var value=''
+            function edit(id,fname,email,subjects,message)
+            {
+              value=id;
+              // document.getElementById('id').value=id;
+              document.getElementById('name').value=fname;
+              document.getElementById('email').value=email;
+              document.getElementById('subject').value=subjects;
+              document.getElementById('textarea').value=message;
+
+              updateBtn.style.display = 'block';
+              submitBtn.style.display = 'none';
+            }
+
+            var nameInput = document.getElementById('name');
+        var emailInput = document.getElementById('email');
+        var subjectInput = document.getElementById('subject');
+        var messageInput = document.getElementById('textarea');
+        var form = document.getElementById('my-form');
+
+function update_form() {
+  // Validate name field
+  const nameValue = nameInput.value.trim();
+  const nameRegex = /^[a-zA-Z ]+$/;
+
+  // Validate email field
+  const emailValue = emailInput.value.trim();
+  const emailRegex = /^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,3}$/; //syntax for mail
+
+  // Validate subject field
+  const subjectValue = subjectInput.value.trim();
+
+  //validate message field
+  const messageValue = messageInput.value.trim();
+  const messageRegex = /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/? ]+$/;
+
+  if (nameValue.length === 0) {
+    alert('Please enter your name');
+    event.preventDefault();
+    return;
+  } else if (!nameValue.match(nameRegex)) {
+    alert('Please enter only alphabets in the name field');
+    event.preventDefault();
+    return;
+  }
+
+  else if (emailValue.length === 0) {
+    alert('Please enter your Email');
+    event.preventDefault();
+    return;
+  } else if (!emailValue.match(emailRegex)) {
+    alert('Please enter a valid email address');
+    event.preventDefault();
+    return;
+  }
+
+  else if (subjectValue.length === 0) {
+    alert('Please Enter the Subject');
+    event.preventDefault();
+    return;
+  } else if (!subjectValue.match(nameRegex)) {
+    alert('Please enter only alphabets in the subject field');
+    event.preventDefault();
+    return;
+  }
+
+  else if (messageValue.length === 0) {
+    alert('Please enter a message');
+    event.preventDefault();
+    return;
+  }
+
+  // If all fields are valid, store function will execute
+  updates();
+   }
+
+            function updates(){
+      console.log('clicked', document.getElementById("name").value);
+      fetch('http://localhost:5000/update1',
+       {
+      method: 'PUT',
+      body: JSON.stringify({
+      id:value,
+      fname: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      subjects: document.getElementById("subject").value,
+      message: document.getElementById("textarea").value,
+     
+}),
+headers: {
+  'Content-type': 'application/json; charset=UTF-8',
+},
+})
+.then((response) => response.json())
+.then((json) => console.log(json));
+// location.reload();
+
+}
+
+function deleteuser(id,is_active){
+
+console.log('clicked', document.getElementById("name").value);
+fetch('http://localhost:5000/delete1',
+ {
+method: 'PUT',
+body: JSON.stringify({
+id:id,
+is_active:0
+
+}),
+headers: {
+'Content-type': 'application/json; charset=UTF-8',
+},
+})
+.then((response) => response.json())
+.then((json) => console.log(json));
+location.reload();
+}
+
+
+// function alert(){
+//     alert("your data has been recorded");
+//     return;
+// }
+
+//   function showPopup() {
+//     document.getElementById("popup").style.display = "block";
+//   }
 
   </script>
 </body>
